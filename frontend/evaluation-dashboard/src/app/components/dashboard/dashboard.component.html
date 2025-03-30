@@ -1,9 +1,0 @@
-<h1>Dashboard</h1>
-<button routerLink="/add">Add New Profile</button>
-<ul>
-  <li *ngFor="let prof of professors">
-    {{ prof.name }} - {{ prof.major }}
-    <button (click)="goToProfile(prof.name)">View</button>
-    <button (click)="editProfile(prof.name)">Edit</button>
-  </li>
-</ul>
