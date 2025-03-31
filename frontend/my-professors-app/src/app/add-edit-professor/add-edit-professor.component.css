@@ -1,15 +1,15 @@
 .full-width {
-    width: 100%;
-    margin-bottom: 1.5rem;
-  }
-  
-  mat-card {
-    max-width: 600px;
-    margin: 3rem auto;
-    padding: 2rem;
-  }
-  
-  .submit-btn {
-    display: block;
-    margin: auto;
-  }  
+  width: 100%;
+  margin-bottom: 1.5rem;
+}
+
+mat-card {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+}
+
+.submit-btn {
+  display: block;
+  margin: auto;
+}

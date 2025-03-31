@@ -55,4 +55,9 @@ export class DashboardComponent implements OnInit {
   addProfessor(): void {
     this.router.navigate(['/add']);
   }
+
+  viewProfile(id: string) {
+    this.router.navigate(['/professor', id]);
+  }
+  
 }

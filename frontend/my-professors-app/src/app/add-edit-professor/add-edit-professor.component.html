@@ -1,23 +1,23 @@
 <mat-card>
-    <mat-card-title>{{ isEditMode ? 'Edit' : 'Add' }} Professor</mat-card-title>
-    <form [formGroup]="professorForm" (ngSubmit)="onSubmit()">
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Name</mat-label>
-        <input matInput formControlName="name" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Department</mat-label>
-        <input matInput formControlName="department" />
-      </mat-form-field>
-  
-      <mat-form-field appearance="outline" class="full-width">
-        <mat-label>Experience</mat-label>
-        <input type="number" matInput formControlName="experience" />
-      </mat-form-field>
-  
-      <button mat-raised-button color="primary" type="submit" class="submit-btn">
-        {{ isEditMode ? 'Update' : 'Add' }} Professor
-      </button>
-    </form>
-  </mat-card>  
+  <mat-card-title>{{ isEditMode ? 'Edit' : 'Add' }} Professor</mat-card-title>
+  <form [formGroup]="professorForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Department</mat-label>
+      <input matInput formControlName="department" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Experience</mat-label>
+      <input type="number" matInput formControlName="experience" />
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" class="submit-btn">
+      {{ isEditMode ? 'Update' : 'Add' }} Professor
+    </button>
+  </form>
+</mat-card>

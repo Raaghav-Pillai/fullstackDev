@@ -25,4 +25,9 @@ export class ProfessorService {
   deleteProfessor(id: string): Observable<any> {
     return this.http.delete(`${this.baseUrl}/professors/${id}`);
   }
+
+  getProfessorById(id: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/professors/${id}`);
+  }
+  
 }

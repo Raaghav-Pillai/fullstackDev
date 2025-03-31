@@ -1,0 +1,39 @@
+<button class="back-btn" (click)="goBack()">← Back to Dashboard</button>
+
+<div *ngIf="professor">
+  <img [src]="professor.photo_url" alt="Profile picture" class="avatar-large" />
+  <h1>{{ professor.name }}</h1>
+  <p>{{ professor.designation }} — {{ professor.department }}</p>
+
+  <h3>Education</h3>
+  <ul><li *ngFor="let edu of professor.education">{{ edu }}</li></ul>
+
+  <h3>Research Interests</h3>
+  <ul><li *ngFor="let interest of professor.research_interests">{{ interest }}</li></ul>
+
+  <h3>Courses</h3>
+  <ul><li *ngFor="let course of professor.courses">{{ course }}</li></ul>
+
+  <h3>Publications</h3>
+  <ul><li *ngFor="let pub of professor.publications">{{ pub }}</li></ul>
+
+  <h3>Contact</h3>
+  <p>Email: {{ professor.email }}</p>
+  <p>Office: {{ professor.office }}</p>
+  <p *ngIf="professor.website">
+    Website: <a [href]="professor.website" target="_blank">{{ professor.website }}</a>
+  </p>
+
+  <h3>Publications</h3>
+<div class="publication-card" *ngFor="let pub of professor.publications">
+  <h4>{{ pub.title }}</h4>
+  <p><strong>Type:</strong> {{ pub.type }}</p>
+  <p><strong>Journal:</strong> {{ pub.journal }}</p>
+  <p><strong>Year:</strong> {{ pub.publication_year }} | <strong>Date:</strong> {{ pub.publication_date }}</p>
+  <p><strong>Cited by:</strong> {{ pub.cited_by_count }}</p>
+  <p><strong>Authors:</strong> {{ pub.authors.join(', ') }}</p>
+  <p>
+    <a [href]="pub.doi" target="_blank">DOI Link</a>
+  </p>
+</div>
+</div>

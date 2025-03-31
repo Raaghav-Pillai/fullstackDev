@@ -1,23 +1,26 @@
-<mat-toolbar color="primary">
-    <span>Professor Dashboard</span>
-    <span class="spacer"></span>
-    <button mat-raised-button color="accent" (click)="addProfessor()">➕ Add Professor</button>
-  </mat-toolbar>
-  
+<header>
+  <h1>Professor Dashboard</h1>
+  <button (click)="addProfessor()">+ Add Professor</button>
+</header>
+
+<main>
   <div *ngIf="professors.length > 0; else noProfessors">
-    <mat-card *ngFor="let prof of professors" class="prof-card">
-      <mat-card-title>{{ prof.name }}</mat-card-title>
-      <mat-card-subtitle>{{ prof.department }}</mat-card-subtitle>
-      <mat-card-content>
-        <p>Experience: {{ prof.experience }} years</p>
-      </mat-card-content>
-      <mat-card-actions>
-        <button mat-button color="primary" (click)="editProfessor(prof._id)">✏️ Edit</button>
-        <button mat-button color="warn" (click)="deleteProfessor(prof._id)">🗑️ Delete</button>
-      </mat-card-actions>
-    </mat-card>
+    <div class="professor-card" *ngFor="let prof of professors">
+      <img *ngIf="prof.photo_url" [src]="prof.photo_url" alt="Photo" class="avatar" />
+      <h2>{{ prof.name }}</h2>
+      <p>Total Citations: {{ prof.total_citations }}</p>
+      <p>Publications: {{ prof.total_publications }}</p>
+      <div class="actions">
+        <button class="edit-btn" (click)="editProfessor(prof._id)">Edit</button>
+        <button class="delete-btn" (click)="deleteProfessor(prof._id)">Delete</button>
+        <button class="view-btn" (click)="viewProfile(prof._id)">View Profile</button>
+      </div>
+    </div>
   </div>
-  
+
   <ng-template #noProfessors>
-    <p class="empty-text">No professors found.</p>
-  </ng-template>  
+    <div class="no-professors">
+      No professors found.
+    </div>
+  </ng-template>
+</main>

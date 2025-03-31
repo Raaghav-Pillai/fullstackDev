@@ -16,10 +16,26 @@ def home():
 
 @app.route("/professors", methods=["GET"])
 def get_professors():
-    results = list(professors_collection.find({}))
+    results = list(professors_collection.find({}, {
+        "name": 1,
+        "department": 1,
+        "designation": 1,
+        "photo_url": 1
+    }))
     for prof in results:
         prof["_id"] = str(prof["_id"])
     return jsonify(results), 200
+
+@app.route("/professors/<prof_id>", methods=["GET"])
+def get_professor_detail(prof_id):
+    try:
+        prof = professors_collection.find_one({"_id": ObjectId(prof_id)})
+        if prof:
+            prof["_id"] = str(prof["_id"])
+            return jsonify(prof), 200
+        return jsonify({"error": "Professor not found"}), 404
+    except:
+        return jsonify({"error": "Invalid ID"}), 400
 
 @app.route("/professors", methods=["POST"])
 def create_professor():

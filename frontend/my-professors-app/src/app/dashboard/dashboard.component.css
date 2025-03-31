@@ -1,19 +1,115 @@
-.prof-card {
-    margin: 1rem;
-  }
-  
-  mat-toolbar {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .spacer {
-    flex: 1 1 auto;
-  }
-  
-  .empty-text {
-    text-align: center;
-    margin-top: 2rem;
-    color: #666;
-    font-style: italic;
-  }  
+* {
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+header {
+  background-color: #0d6efd;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 2rem;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+header button {
+  background-color: #ffc107;
+  border: none;
+  color: black;
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+header button:hover {
+  background-color: #e0a800;
+}
+
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.professor-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.professor-card h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: #0d6efd;
+}
+
+.professor-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.actions {
+  margin-top: 0.5rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.actions button {
+  padding: 0.4rem 0.75rem;
+  font-size: 0.85rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  background-color: #198754;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #dc3545;
+  color: white;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 0.5rem;
+}
+
+.view-btn {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.4rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.no-professors {
+  text-align: center;
+  margin-top: 3rem;
+  font-style: italic;
+  color: #888;
+}
