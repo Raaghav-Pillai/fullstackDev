@@ -1,15 +1,23 @@
-<h2>Professor Dashboard</h2>
-<button (click)="addProfessor()">➕ Add Professor</button>
-<br /><br />
-
-<ul *ngIf="professors.length > 0; else noData">
-  <li *ngFor="let prof of professors">
-    <strong>{{ prof.name }}</strong> — {{ prof.department }} — {{ prof.experience }} years
-    <button (click)="editProfessor(prof._id)">✏️ Edit</button>
-    <button (click)="deleteProfessor(prof._id)">🗑️ Delete</button>
-  </li>
-</ul>
-
-<ng-template #noData>
-  <p>No professors found.</p>
-</ng-template>
+<mat-toolbar color="primary">
+    <span>Professor Dashboard</span>
+    <span class="spacer"></span>
+    <button mat-raised-button color="accent" (click)="addProfessor()">➕ Add Professor</button>
+  </mat-toolbar>
+  
+  <div *ngIf="professors.length > 0; else noProfessors">
+    <mat-card *ngFor="let prof of professors" class="prof-card">
+      <mat-card-title>{{ prof.name }}</mat-card-title>
+      <mat-card-subtitle>{{ prof.department }}</mat-card-subtitle>
+      <mat-card-content>
+        <p>Experience: {{ prof.experience }} years</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button color="primary" (click)="editProfessor(prof._id)">✏️ Edit</button>
+        <button mat-button color="warn" (click)="deleteProfessor(prof._id)">🗑️ Delete</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  
+  <ng-template #noProfessors>
+    <p class="empty-text">No professors found.</p>
+  </ng-template>  
