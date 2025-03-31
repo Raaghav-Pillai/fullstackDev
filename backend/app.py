@@ -18,13 +18,13 @@ def home():
 def get_professors():
     results = list(professors_collection.find({}, {
         "name": 1,
-        "department": 1,
-        "designation": 1,
-        "photo_url": 1
+        "total_citations": 1,
+        "total_publications": 1
     }))
     for prof in results:
         prof["_id"] = str(prof["_id"])
     return jsonify(results), 200
+
 
 @app.route("/professors/<prof_id>", methods=["GET"])
 def get_professor_detail(prof_id):
@@ -42,26 +42,30 @@ def create_professor():
     data = request.get_json()
     new_professor = {
         "name": data.get("name"),
-        "department": data.get("department"),
-        "experience": data.get("experience")
+        "total_citations": data.get("total_citations", 0),
+        "total_publications": data.get("total_publications", 0),
+        "publications": data.get("publications", [])
     }
     result = professors_collection.insert_one(new_professor)
     new_professor["_id"] = str(result.inserted_id)
     return jsonify(new_professor), 201
+
 
 @app.route("/professors/<prof_id>", methods=["PUT"])
 def update_professor(prof_id):
     data = request.get_json()
     updated_data = {
         "name": data.get("name"),
-        "department": data.get("department"),
-        "experience": data.get("experience")
+        "total_citations": data.get("total_citations", 0),
+        "total_publications": data.get("total_publications", 0),
+        "publications": data.get("publications", [])
     }
     result = professors_collection.update_one({"_id": ObjectId(prof_id)}, {"$set": updated_data})
     if result.matched_count == 1:
         updated_data["_id"] = prof_id
         return jsonify(updated_data), 200
     return jsonify({"error": "Professor not found"}), 404
+
 
 @app.route("/professors/<prof_id>", methods=["DELETE"])
 def delete_professor(prof_id):

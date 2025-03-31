@@ -1,34 +1,46 @@
 import json
 from pymongo import MongoClient
 
+# Connect to local MongoDB
 client = MongoClient("mongodb://localhost:27017")
 db = client["myDB"]
-professors_collection = db["professors"]
+collection = db["professors"]
 
-def load_json(path):
-    with open(path, 'r', encoding='utf-8') as f:
-        return json.load(f)
+# 🔥 Clear the collection before importing
+collection.delete_many({})
+print("✅ Cleared existing professors.")
 
+# Files to import
 files = [
-    "data-analysis/Nishant Garg_data.json",
-    "data-analysis/Prannoy Suraneni_data.json"
+    "./data-analysis/Nishant Garg_data.json",
+    "./data-analysis/Prannoy Suraneni_data.json"
 ]
 
-for path in files:
-    data = load_json(path)
+def load_professor(file_path):
+    with open(file_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
 
-    professor = {
+    return {
         "name": data.get("name"),
-        "designation": data.get("designation"),
-        "department": data.get("department"),
-        "education": data.get("education", []),
-        "research_interests": data.get("research_interests", []),
-        "courses": data.get("courses", []),
-        "publications": data.get("publications", []),
-        "email": data.get("email"),
-        "office": data.get("office"),
-        "website": data.get("website"),
-        "photo_url": data.get("photo_url")
+        "total_citations": data.get("total_citations", 0),
+        "total_publications": data.get("total_publications", 0),
+        "publications": [
+            {
+                "title": pub.get("title"),
+                "type": pub.get("type"),
+                "doi": pub.get("doi"),
+                "publication_year": pub.get("publication_year"),
+                "publication_date": pub.get("publication_date"),
+                "cited_by_count": pub.get("cited_by_count", 0),
+                "authors": pub.get("authors", []),
+                "journal": pub.get("journal")
+            }
+            for pub in data.get("publications", [])
+        ]
     }
 
-    professors_collection.insert_one(professor)
+# Import loop
+for file in files:
+    professor = load_professor(file)
+    result = collection.insert_one(professor)
+    print(f"✅ Inserted {professor['name']} with ID {result.inserted_id}")

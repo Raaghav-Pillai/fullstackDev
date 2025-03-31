@@ -1,25 +1,7 @@
 <button class="back-btn" (click)="goBack()">← Back to Dashboard</button>
 
 <div *ngIf="professor">
-  <img [src]="professor.photo_url" alt="Profile picture" class="avatar-large" />
   <h1>{{ professor.name }}</h1>
-  <p>{{ professor.designation }} — {{ professor.department }}</p>
-
-  <h3>Education</h3>
-  <ul><li *ngFor="let edu of professor.education">{{ edu }}</li></ul>
-
-  <h3>Research Interests</h3>
-  <ul><li *ngFor="let interest of professor.research_interests">{{ interest }}</li></ul>
-
-  <h3>Courses</h3>
-  <ul><li *ngFor="let course of professor.courses">{{ course }}</li></ul>
-
-  <h3>Publications</h3>
-  <ul><li *ngFor="let pub of professor.publications">{{ pub }}</li></ul>
-
-  <h3>Contact</h3>
-  <p>Email: {{ professor.email }}</p>
-  <p>Office: {{ professor.office }}</p>
   <p *ngIf="professor.website">
     Website: <a [href]="professor.website" target="_blank">{{ professor.website }}</a>
   </p>
