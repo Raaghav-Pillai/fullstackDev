@@ -1,1 +1,23 @@
-<p>add-edit-professor works!</p>
+<h2>{{ isEditMode ? 'Edit' : 'Add' }} Professor</h2>
+
+<form [formGroup]="professorForm" (ngSubmit)="onSubmit()">
+  <label>
+    Name:
+    <input formControlName="name" required />
+  </label>
+  <br />
+
+  <label>
+    Department:
+    <input formControlName="department" required />
+  </label>
+  <br />
+
+  <label>
+    Experience (years):
+    <input type="number" formControlName="experience" required min="0" />
+  </label>
+  <br /><br />
+
+  <button type="submit">{{ isEditMode ? 'Update' : 'Add' }} Professor</button>
+</form>

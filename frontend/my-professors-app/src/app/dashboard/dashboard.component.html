@@ -1,1 +1,15 @@
-<p>dashboard works!</p>
+<h2>Professor Dashboard</h2>
+<button (click)="addProfessor()">➕ Add Professor</button>
+<br /><br />
+
+<ul *ngIf="professors.length > 0; else noData">
+  <li *ngFor="let prof of professors">
+    <strong>{{ prof.name }}</strong> — {{ prof.department }} — {{ prof.experience }} years
+    <button (click)="editProfessor(prof._id)">✏️ Edit</button>
+    <button (click)="deleteProfessor(prof._id)">🗑️ Delete</button>
+  </li>
+</ul>
+
+<ng-template #noData>
+  <p>No professors found.</p>
+</ng-template>
